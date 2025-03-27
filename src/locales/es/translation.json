@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "services": "Servicios",
+    "cases": "Casos de Estudio",
+    "contact": "Contacto"
+  },
+  "button": {
+    "getStarted": "Empezar",
+    "scheduleDemo": "Agendar Demo",
+    "viewCases": "Ver Casos de Estudio",
+    "learnMore": "Saber Más",
+    "readCase": "Leer Caso de Estudio"
+  },
+  "hero": {
+    "title1": "Transformando Datos en",
+    "title2": "Inteligencia",
+    "description": "Aprovecha el poder de la inteligencia artificial y el análisis avanzado para desbloquear conocimientos sin precedentes e impulsar la innovación en tu negocio."
+  },
+  "services": {
+    "title": "Nuestras Soluciones",
+    "ai": {
+      "title": "Soluciones IA",
+      "description": "Modelos de IA personalizados adaptados a las necesidades y desafíos específicos de tu negocio."
+    },
+    "data": {
+      "title": "Procesamiento de Datos",
+      "description": "Procesamiento y análisis de datos avanzados para descubrir información valiosa."
+    },
+    "predictive": {
+      "title": "Análisis Predictivo",
+      "description": "Prepara tus decisiones para el futuro con nuestras soluciones de análisis predictivo."
+    }
+  },
+  "cases": {
+    "title": "Historias de Éxito",
+    "globalTech": {
+      "title": "Líder Tecnológico Global",
+      "description": "Implementamos automatización de servicio al cliente impulsada por IA, reduciendo el tiempo de respuesta en un 75%",
+      "category": "Tecnología e Innovación"
+    },
+    "healthcare": {
+      "title": "Pionero en Salud",
+      "description": "Plataforma avanzada de análisis de datos para resultados predictivos de atención al paciente",
+      "category": "Salud"
+    }
+  },
+  "contact": {
+    "title": "¿Listo para Transformar Tus Datos?",
+    "description": "Discutamos cómo HusAI puede ayudar a tu negocio a aprovechar el poder de la IA y el análisis de datos.",
+    "email": "contacto@husai.com",
+    "chat": "Chat en Vivo",
+    "meeting": "Agendar Reunión"
+  },
+  "footer": {
+    "copy": "© 2024 HusAI. Todos los derechos reservados."
+  },
+  "language": {
+    "change": "Cambiar Idioma",
+    "en": "EN",
+    "es": "ES"
+  }
+}
