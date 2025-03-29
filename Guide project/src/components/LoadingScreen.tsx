@@ -55,8 +55,15 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
         className="absolute top-[5%] right-[5%] w-[250px] h-[250px] bg-status-info/35 rounded-full blur-[70px]"
         style={{ y: bgY5, scale: scrollScale5 }}
       />
-      {/* HusAI Logo */}
+      {/* HusAI Logo and Pulse Animation */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        {/* Pulse Animation */}
+        <div className="pulse-container">
+          <div className="pulse-circle"></div>
+          <div className="pulse-circle"></div>
+          <div className="pulse-circle"></div>
+        </div>
+        {/* Logo */}
         <img
           src="/husai_logo_svg.svg"
           alt="HusAI Logo"
