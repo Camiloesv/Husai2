@@ -59,10 +59,52 @@ function App() {
       if (fadeTimer) clearTimeout(fadeTimer);
       if (hideTimer) clearTimeout(hideTimer);
     };
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []);
+
+  // Refactored Preloader Logic using State
+  type PreloaderStatus = 'active' | 'fading' | 'hidden';
+  const [preloaderStatus, setPreloaderStatus] = useState<PreloaderStatus>('active');
+
+  useEffect(() => {
+    // Start fading after 3 seconds
+    const fadeTimer = setTimeout(() => {
+      setPreloaderStatus('fading');
+    }, 3000);
+
+    // Hide completely after fade transition (1s) + initial delay (3s) = 4s
+    const hideTimer = setTimeout(() => {
+      setPreloaderStatus('hidden');
+    }, 4000); // 3000ms delay + 1000ms fade
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(hideTimer);
+    };
+  }, []); // Run only once on mount
+
+  // Effect to update preloader element classes based on state
+  useEffect(() => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      if (preloaderStatus === 'fading') {
+        preloader.classList.add('loaded');
+      } else if (preloaderStatus === 'hidden') {
+        // Ensure 'loaded' is added before 'hidden' if transitioning directly
+        if (!preloader.classList.contains('loaded')) {
+          preloader.classList.add('loaded');
+        }
+        // Add 'hidden' after a microtask delay to ensure 'loaded' styles apply first if needed
+        // Although CSS transition should handle this, belt-and-suspenders approach
+        queueMicrotask(() => {
+           preloader.classList.add('hidden');
+        });
+      }
+    }
+  }, [preloaderStatus]); // Run when status changes
 
   return (
-    <div className="min-h-screen bg-dark-background relative overflow-hidden">
+    <div className="min-h-screen bg-dark-background relative"> {/* Removed overflow-hidden */}
+      {/* Preloader is in index.html, state just controls its classes */}
       {/* Render Background Animation Component */}
       <BackgroundAnimation />
 

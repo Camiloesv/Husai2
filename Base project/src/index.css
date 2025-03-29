@@ -25,9 +25,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Stack pulse and text vertically */
+  /* flex-direction: column; /* Keep default row or explicitly set */
   z-index: 9999;
   opacity: 1;
+  /* Remove delay, let fade start after component mounts */
   transition: opacity 1s ease-out; /* Slower fade out transition (1s) */
 }
 
@@ -42,13 +43,18 @@
   visibility: hidden !important;
 }
 
+/* Restore and modify pulse container */
 .pulse-container {
   position: relative;
-  width: 100px; /* Adjust size as needed */
-  height: 100px;
-  margin-bottom: 2rem; /* Space between pulse and text */
+  width: 200px; /* Increased size */
+  height: 200px; /* Increased size */
+  display: flex; /* Use flex to center logo */
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 2rem; /* Removed margin */
 }
 
+/* Restore pulse circles */
 .pulse-circle {
   position: absolute;
   top: 0;
@@ -60,7 +66,7 @@
   animation: pulse 1.8s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* Stagger the animations and use different colors */
+/* Restore stagger and colors */
 .pulse-circle:nth-child(1) {
   border-color: #9C27B0; /* purple.primary */
   animation-delay: 0s;
@@ -76,6 +82,7 @@
   animation-delay: -1.2s; /* Stagger */
 }
 
+/* Restore pulse keyframes */
 @keyframes pulse {
   0% {
     transform: scale(0.1);
@@ -90,37 +97,15 @@
   }
 }
 
-/* Preloader Text Styles */
-.preloader-text {
-  display: none; /* Hidden by default */
-  opacity: 0; /* Hidden */
-  transition: opacity 0.3s ease-out;
-  text-align: center;
-}
-
-.preloader-brand {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 0.25rem;
-}
-
-.preloader-tagline {
-  font-size: 0.875rem;
-  color: #BDBDBD;
-  letter-spacing: 0.1em;
-  text-transform: lowercase;
-}
-
-@keyframes fadeInOut {
-  0%, 100% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  50% {
-    opacity: 0.8;
-    transform: translateY(0);
-  }
+/* Style the SVG logo inside the container */
+#preloader-logo {
+  width: 50%; /* Size relative to container */
+  height: auto;
+  color: #9C27B0; /* purple.primary */
+  /* Remove mask and fill animation */
+  /* mask-image: none; */
+  /* animation: none; */
+  z-index: 1; /* Ensure logo is above circles if needed */
 }
 
 .glass {

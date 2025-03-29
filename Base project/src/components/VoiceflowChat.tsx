@@ -44,7 +44,7 @@ const VoiceflowChat: React.FC = () => {
               mode: 'embedded',
               target: document.getElementById(VOICEFLOW_CONTAINER_ID),
             },
-             // Start hidden if using show/hide API
+            // Start hidden if using show/hide API
             runtime: {
               startHidden: true,
             },
@@ -54,7 +54,7 @@ const VoiceflowChat: React.FC = () => {
           isLoaded.current = true; // Mark as loaded
           // If component was opened while loading, show it now
           if (isOpen && typeof chatApi.current?.show === 'function') {
-             chatApi.current.show();
+            chatApi.current.show();
           }
         } else {
           console.error('Voiceflow chat object not found after script load.');
@@ -72,14 +72,14 @@ const VoiceflowChat: React.FC = () => {
           try {
             document.body.removeChild(existingScript);
           } catch (e) {
-             console.warn("Could not remove Voiceflow script on unmount:", e);
+            console.warn("Could not remove Voiceflow script on unmount:", e);
           }
         }
         // Attempt to destroy chat instance on unmount
         if (typeof chatApi.current?.destroy === 'function') {
           try {
             chatApi.current.destroy();
-          } catch(e) {
+          } catch (e) {
             console.warn("Could not destroy Voiceflow chat on unmount:", e);
           }
         }
@@ -108,7 +108,6 @@ const VoiceflowChat: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-
   return (
     <>
       {/* Chat Trigger Button */}
@@ -121,7 +120,7 @@ const VoiceflowChat: React.FC = () => {
         }`}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
       >
-        {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+        {isOpen ? <X size={24} /> : <img src="/husai_logo_svg.svg" alt="HusAI Logo" width={24} height={24} />}
       </button>
 
       {/* Chat Container - Always rendered, visibility controlled by API/opacity */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Brain, ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react'; // Removed Brain
 import { TFunction, i18n } from 'i18next'; // Import i18n type directly
 
 interface HeaderProps {
@@ -22,10 +22,13 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <nav className={`floating-nav ${isScrolled ? 'bg-dark-card/50' : 'bg-dark-card/30'}`}>
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-3">
-          <Brain className="w-8 h-8 text-purple-primary" />
-          <span className="text-text-primary text-2xl font-bold">HusAI</span>
-        </div>
+        {/* Logo and Brand Name */}
+        <a href="/" className=""> {/* Link wraps logo and text */}
+          <div className="flex items-center space-x-3"> {/* Flex container for logo and text */}
+            <img src="/husai_logo_svg.svg" alt="HusAI Logo" className="h-16 w-auto" /> {/* Changed to SVG */}
+            <span className="text-text-primary text-2xl font-bold">HusAI</span> {/* Added text */}
+          </div>
+        </a>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-12">
