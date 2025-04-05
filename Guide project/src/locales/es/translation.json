@@ -1,62 +1,33 @@
 {
-  "nav": {
-    "services": "Servicios",
-    "cases": "Casos de Estudio",
-    "contact": "Contacto"
-  },
-  "button": {
-    "getStarted": "Empezar",
-    "scheduleDemo": "Agendar Demo",
-    "viewCases": "Ver Casos de Estudio",
-    "learnMore": "Saber Más",
-    "readCase": "Leer Caso de Estudio"
-  },
-  "hero": {
-    "title1": "Transformando Datos en",
-    "title2": "Inteligencia",
-    "description": "Aprovecha el poder de la inteligencia artificial y el análisis avanzado para desbloquear conocimientos sin precedentes e impulsar la innovación en tu negocio."
-  },
-  "services": {
-    "title": "Nuestras Soluciones",
-    "ai": {
-      "title": "Soluciones IA",
-      "description": "Modelos de IA personalizados adaptados a las necesidades y desafíos específicos de tu negocio."
-    },
-    "data": {
-      "title": "Procesamiento de Datos",
-      "description": "Procesamiento y análisis de datos avanzados para descubrir información valiosa."
-    },
-    "predictive": {
-      "title": "Análisis Predictivo",
-      "description": "Prepara tus decisiones para el futuro con nuestras soluciones de análisis predictivo."
-    }
-  },
-  "cases": {
-    "title": "Historias de Éxito",
-    "globalTech": {
-      "title": "Líder Tecnológico Global",
-      "description": "Implementamos automatización de servicio al cliente impulsada por IA, reduciendo el tiempo de respuesta en un 75%",
-      "category": "Tecnología e Innovación"
-    },
-    "healthcare": {
-      "title": "Pionero en Salud",
-      "description": "Plataforma avanzada de análisis de datos para resultados predictivos de atención al paciente",
-      "category": "Salud"
-    }
-  },
-  "contact": {
-    "title": "¿Listo para Transformar Tus Datos?",
-    "description": "Discutamos cómo HusAI puede ayudar a tu negocio a aprovechar el poder de la IA y el análisis de datos.",
-    "email": "contacto@husai.com",
-    "chat": "Chat en Vivo",
-    "meeting": "Agendar Reunión"
-  },
-  "footer": {
-    "copy": "© 2024 HusAI. Todos los derechos reservados."
-  },
-  "language": {
-    "change": "Cambiar Idioma",
-    "en": "EN",
-    "es": "ES"
-  }
+  "hero_title_1": "Creamos",
+  "hero_title_2": "Empleados digitales",
+  "hero_subtitle": "Mejora el rendimiento y la productividad de tu empresa con soluciones de IA basadas en datos.",
+  "hero_button_primary": "Agendar entrevista",
+  "hero_button_secondary": "Ver nuestro blog",
+  "hero_ai_partners": "Colaboramos con las empresas de IA más innovadoras del mundo",
+
+  "services_title": "Nuestras Soluciones",
+  "service_ai": "Soluciones de IA",
+  "service_ai_desc": "Modelos de IA personalizados para las necesidades y retos de tu empresa.",
+  "service_data": "Procesamiento de datos",
+  "service_data_desc": "Análisis de datos avanzados para descubrir información valiosa.",
+  "service_predictive": "Analítica predictiva",
+  "service_predictive_desc": "Toma decisiones futuras con nuestra analítica predictiva.",
+
+  "cases_title": "Historias de Éxito",
+  "case_1_title": "Líder Tecnológico Global",
+  "case_1_desc": "Automatización del servicio al cliente con IA, reduciendo el tiempo de respuesta en un 75%",
+  "case_2_title": "Pionero en Salud",
+  "case_2_desc": "Plataforma avanzada de análisis predictivo para atención médica",
+
+  "contact_title": "¿Listo para transformar tus datos?",
+  "contact_subtitle": "Conversemos sobre cómo HusAI puede ayudar a tu empresa con IA y analítica.",
+  "contact_button": "Iniciar chat en vivo",
+
+    "blog_title": "Últimos artículos",
+    "blog_subtitle": "Explora nuestra colección de artículos sobre inteligencia artificial, ciencia de datos e innovación tecnológica.",
+    "back_to_articles": "Volver a los artículos",
+    "article_not_found": "Artículo no encontrado.",
+    "article_error": "Error al cargar el artículo."
+  
 }

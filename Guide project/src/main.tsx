@@ -1,10 +1,14 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
 import App from './App.tsx';
 import './index.css';
+import './i18n'; // Re-adding i18n import if it was intended
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <BrowserRouter> {/* Wrap App with BrowserRouter */}
+      <App />
+    </BrowserRouter>
   </StrictMode>
 );

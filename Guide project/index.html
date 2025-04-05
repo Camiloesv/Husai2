@@ -11,40 +11,5 @@
     <div id="root"></div>
     <div id="vfchat"></div>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <script type="text/javascript">
-      // Prevent duplicate script injection
-      if (!window.__vf_loaded) {
-        window.__vf_loaded = true;
-
-        const script = document.createElement('script');
-        script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
-        script.type = 'text/javascript';
-
-        script.onload = function () {
-          window.voiceflow.chat.load({
-            verify: { projectID: '67ded4676cef5247fa195655' },
-            url: 'https://general-runtime.voiceflow.com',
-            versionID: 'production',
-            voice: {
-              url: 'https://runtime-api.voiceflow.com'
-            },
-            container: document.getElementById('vfchat'),
-            styles: {
-              fontSize: '16px',
-              backgroundColor: '#121212',
-              textColor: '#FFFFFF',
-              messageColor: '#2D2D2D',
-              messageBorder: '1px solid rgba(66, 66, 66, 0.2)',
-              userMessageColor: '#9C27B0',
-              userTextColor: '#FFFFFF',
-              fontFamily: 'Chivo, source-sans-3'
-            }
-          });
-        };
-
-        document.body.appendChild(script);
-      }
-    </script>
   </body>
 </html>

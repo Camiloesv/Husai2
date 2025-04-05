@@ -1,0 +1,33 @@
+{
+    "hero_title_1": "Nous créons",
+    "hero_title_2": "Des employés numériques",
+    "hero_subtitle": "Améliorez les performances de votre entreprise avec nos solutions basées sur l'IA et les données.",
+    "hero_button_primary": "Planifier une entrevue",
+    "hero_button_secondary": "Voir notre blog",
+    "hero_ai_partners": "Nous collaborons avec les entreprises d'IA les plus innovantes au monde",
+  
+    "services_title": "Nos solutions",
+    "service_ai": "Solutions d'IA",
+    "service_ai_desc": "Modèles d'IA personnalisés pour les besoins et défis de votre entreprise.",
+    "service_data": "Traitement de données",
+    "service_data_desc": "Analyse avancée des données pour découvrir des informations précieuses.",
+    "service_predictive": "Analyse prédictive",
+    "service_predictive_desc": "Prenez des décisions éclairées avec notre analyse prédictive.",
+  
+    "cases_title": "Histoires de réussite",
+    "case_1_title": "Leader technologique mondial",
+    "case_1_desc": "Automatisation du service client avec IA, réduction du temps de réponse de 75%",
+    "case_2_title": "Pionnier en santé",
+    "case_2_desc": "Plateforme avancée d'analyse prédictive pour les soins aux patients",
+  
+    "contact_title": "Prêt à transformer vos données?",
+    "contact_subtitle": "Discutons de la façon dont HusAI peut aider votre entreprise grâce à l'IA.",
+    "contact_button": "Démarrer le chat en direct",
+
+    "blog_title": "Dernières publications",
+    "blog_subtitle": "Explorez notre collection d'articles sur l'intelligence artificielle, la science des données et l'innovation technologique.",
+    "back_to_articles": "Retour aux articles",
+    "article_not_found": "Article non trouvé.",
+    "article_error": "Erreur lors du chargement de l'article."
+  }
+  

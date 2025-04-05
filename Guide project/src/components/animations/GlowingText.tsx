@@ -11,12 +11,12 @@ const GlowingText: React.FC<GlowingTextProps> = ({ text, className = '' }) => {
       {text.split('').map((char, index) => (
         <span
           key={index}
-          className="inline-block animate-glow"
+          className={`animate-glow ${char === ' ' ? 'w-2' : 'inline-block'}`}
           style={{
             animationDelay: `${index * 0.1}s`,
           }}
         >
-          {char}
+          {char === ' ' ? '\u00A0' : char}
         </span>
       ))}
     </div>

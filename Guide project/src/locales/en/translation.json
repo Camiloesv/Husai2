@@ -1,66 +1,33 @@
 {
-  "nav": {
-    "services": "Services",
-    "cases": "Case Studies",
-    "contact": "Contact"
-  },
-  "preloader": {
-    "brand": "Husai",
-    "tagline": "intelligence in motion"
-  },
-  "button": {
-    "getStarted": "Get Started",
-    "scheduleDemo": "Schedule Demo",
-    "viewCases": "View Case Studies",
-    "learnMore": "Learn More",
-    "readCase": "Read Case Study"
-  },
-  "hero": {
-    "title1": "Transforming Data into",
-    "title2": "Intelligence",
-    "description": "Harness the power of artificial intelligence and advanced analytics to unlock unprecedented insights and drive innovation in your business."
-  },
-  "services": {
-    "title": "Our Solutions",
-    "ai": {
-      "title": "AI Solutions",
-      "description": "Custom AI models tailored to your specific business needs and challenges."
-    },
-    "data": {
-      "title": "Data Processing",
-      "description": "Advanced data processing and analytics to uncover valuable insights."
-    },
-    "predictive": {
-      "title": "Predictive Analytics",
-      "description": "Future-proof your decisions with our predictive analytics solutions."
-    }
-  },
-  "cases": {
-    "title": "Success Stories",
-    "globalTech": {
-      "title": "Global Tech Leader",
-      "description": "Implemented AI-driven customer service automation, reducing response time by 75%",
-      "category": "Tech & Innovation"
-    },
-    "healthcare": {
-      "title": "Healthcare Pioneer",
-      "description": "Advanced data analytics platform for predictive patient care outcomes",
-      "category": "Healthcare"
-    }
-  },
-  "contact": {
-    "title": "Ready to Transform Your Data?",
-    "description": "Let's discuss how HusAI can help your business leverage the power of AI and data analytics.",
-    "email": "contact@husai.com",
-    "chat": "Live Chat",
-    "meeting": "Schedule Meeting"
-  },
-  "footer": {
-    "copy": "© 2024 HusAI. All rights reserved."
-  },
-  "language": {
-    "change": "Change Language",
-    "en": "EN",
-    "es": "ES"
-  }
+  "hero_title_1": "We build",
+  "hero_title_2": "Digital employees",
+  "hero_subtitle": "Elevate your company's performance and employee productivity with our AI-powered, data-driven solutions.",
+  "hero_button_primary": "Schedule Interview",
+  "hero_button_secondary": "Check Our Blog",
+  "hero_ai_partners": "We collaborate with the world's most innovative AI companies",
+
+  "services_title": "Our Solutions",
+  "service_ai": "AI Solutions",
+  "service_ai_desc": "Custom AI models tailored to your specific business needs and challenges.",
+  "service_data": "Data Processing",
+  "service_data_desc": "Advanced data processing and analytics to uncover valuable insights.",
+  "service_predictive": "Predictive Analytics",
+  "service_predictive_desc": "Future-proof your decisions with our predictive analytics solutions.",
+
+  "cases_title": "Success Stories",
+  "case_1_title": "Global Tech Leader",
+  "case_1_desc": "Implemented AI-driven customer service automation, reducing response time by 75%",
+  "case_2_title": "Healthcare Pioneer",
+  "case_2_desc": "Advanced data analytics platform for predictive patient care outcomes",
+
+  "contact_title": "Ready to Transform Your Data?",
+  "contact_subtitle": "Let's discuss how HusAI can help your business leverage the power of AI and data analytics.",
+  "contact_button": "Start Live Chat",
+
+  "blog_title": "Latest Insights",
+  "blog_subtitle": "Explore our collection of articles on artificial intelligence, data science, and technology innovation.",
+  "back_to_articles": "Back to Articles",
+  "article_not_found": "Article not found.",
+  "article_error": "Error loading article."
+
 }
