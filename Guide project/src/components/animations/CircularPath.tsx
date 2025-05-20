@@ -2,68 +2,68 @@ import React, { useEffect, useRef } from 'react';
 
 const CircularPath: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  let scrollOffset = 0;
-  const factor = 0.0025; // Ajusta este factor para modificar la sensibilidad al scroll
+
+  let baseRotation = 0;
+  let lastScrollY = window.scrollY;
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
+
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    
+
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
 
     const handleScroll = () => {
-      scrollOffset = window.pageYOffset;
+      const currentScrollY = window.scrollY;
+      const deltaScroll = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+      baseRotation += deltaScroll * 0.005; // Añade scroll directamente a la rotación
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Calcular el centro y el radio
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
       const radius = Math.min(centerX, centerY) * 0.8;
-      
-      // Dibujar la ruta circular
+
+      // Rotación base lenta hacia la derecha
+      baseRotation += 0.001;
+
+      // Dibujar ruta circular
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(156, 39, 176, 0.1)';
+      ctx.strokeStyle = 'rgba(114, 24, 173, 0.03)';
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      // Calcular ángulo base en función del scroll
-      const baseAngle = scrollOffset * factor;
-      // Definir los 4 puntos equidistantes (0, 90, 180 y 270 grados)
+      // Dibujar puntos giratorios
       const offsets = [0, Math.PI / 2, Math.PI, (3 * Math.PI) / 2];
-
       offsets.forEach((offset) => {
-        const angle = baseAngle + offset;
+        const angle = baseRotation + offset;
         const pointX = centerX + radius * Math.cos(angle);
         const pointY = centerY + radius * Math.sin(angle);
-        
-        // Crear gradiente para el efecto glow
+
         const gradient = ctx.createRadialGradient(pointX, pointY, 0, pointX, pointY, 20);
-        gradient.addColorStop(0, 'rgba(156, 39, 176, 0.3)');
-        gradient.addColorStop(1, 'rgba(156, 39, 176, 0)');
-        
-        // Dibujar el glow
+        gradient.addColorStop(0, 'rgba(39, 144, 176, 0.3)');
+        gradient.addColorStop(1, 'rgba(166, 20, 211, 0)');
+
         ctx.beginPath();
         ctx.fillStyle = gradient;
         ctx.arc(pointX, pointY, 20, 0, Math.PI * 2);
         ctx.fill();
-        
-        // Dibujar el punto central
+
         ctx.beginPath();
-        ctx.fillStyle = '#9C27B0';
+        ctx.fillStyle = '#27a1b0';
         ctx.arc(pointX, pointY, 4, 0, Math.PI * 2);
         ctx.fill();
       });
-      
+
       requestAnimationFrame(animate);
     };
 

@@ -28,6 +28,11 @@
   "blog_subtitle": "Explore our collection of articles on artificial intelligence, data science, and technology innovation.",
   "back_to_articles": "Back to Articles",
   "article_not_found": "Article not found.",
-  "article_error": "Error loading article."
+  "article_error": "Error loading article.",
 
+  "nav_services": "Services",
+  "nav_cases": "Case Studies",
+  "nav_contact": "Contact",
+  "nav_blog": "Blog",
+  "nav_cta": "Get Started"
 }

@@ -2,8 +2,8 @@ import { createClient } from '@supabase/supabase-js';
 
 // Replace with your Supabase URL and Anon Key
 // It's recommended to use environment variables for these in production
-const supabaseUrl = 'https://kkzibcveuqktqxecjeho.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtremliY3ZldXFrdHF4ZWNqZWhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM0Mzk2OTUsImV4cCI6MjA1OTAxNTY5NX0.Mjn0A7wosR7L9vysWfZcI1yNAe7IH6ueQf5Bd2uqKYo';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Supabase URL and Anon Key are required.');

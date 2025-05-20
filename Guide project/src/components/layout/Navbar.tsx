@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Logo from '../Logo';
+import CustomSelect from '../sections/CustomSelect';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +21,6 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Scroll suave a la sección cuando cambia el hash
   useEffect(() => {
     if (location.hash) {
       const el = document.querySelector(location.hash);
@@ -38,9 +40,14 @@ const Navbar: React.FC = () => {
     }
   };
 
+  const changeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+  };
+
   return (
     <nav className={`floating-nav ${isScrolled ? 'bg-dark-card/50' : 'bg-dark-card/30'}`}>
       <div className="flex items-center justify-between">
+        {/* Logo */}
         <div className="flex items-center space-x-3">
           <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center space-x-3">
             <Logo className="text-purple-primary w-8 h-8" />
@@ -54,16 +61,37 @@ const Navbar: React.FC = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-12">
           <div className="flex space-x-8">
-            <button className="nav-link" onClick={() => handleNavClick('services')}>Services</button>
-            <button className="nav-link" onClick={() => handleNavClick('cases')}>Case Studies</button>
-            <button className="nav-link" onClick={() => handleNavClick('contact')}>Contact</button>
-            <Link to="/blog" className="nav-link">Blog</Link>
+            <button className="nav-link" onClick={() => handleNavClick('services')}>
+              {t('nav_services')}
+            </button>
+            <button className="nav-link" onClick={() => handleNavClick('cases')}>
+              {t('nav_cases')}
+            </button>
+            <button className="nav-link" onClick={() => handleNavClick('contact')}>
+              {t('nav_contact')}
+            </button>
+            <Link to="/blog" className="nav-link">{t('nav_blog')}</Link>
           </div>
-          <button className="glass-button">Get Started</button>
+          <div className="ml-2 w-16"> 
+            <CustomSelect value={i18n.language} onChange={changeLanguage} />
+          </div>
+          <a
+            href="https://wa.me/573212686430?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20de%20Husai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-button bg-cyan-400 hover:bg-cyan-500 text-white transition-colors"
+          >
+            {t('nav_cta')}
+            <img
+              src="/wa.png"
+              alt="WhatsApp"
+              className="w-5 h-5 ml-2"
+            />
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className="md:hidden text-text-primary hover:text-purple-primary transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -74,12 +102,35 @@ const Navbar: React.FC = () => {
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <div className="md:hidden mt-4 py-4 border-t border-dark-border/20">
-          <div className="flex flex-col space-y-4">
-            <button className="nav-link text-lg" onClick={() => handleNavClick('services')}>Services</button>
-            <button className="nav-link text-lg" onClick={() => handleNavClick('cases')}>Case Studies</button>
-            <button className="nav-link text-lg" onClick={() => handleNavClick('contact')}>Contact</button>
-            <Link to="/blog" className="nav-link text-lg" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
-            <button className="glass-button w-full justify-center">Get Started</button>
+          <div className="flex flex-col space-y-4 items-start">
+            <button className="nav-link text-lg" onClick={() => handleNavClick('services')}>
+              {t('nav_services')}
+            </button>
+            <button className="nav-link text-lg" onClick={() => handleNavClick('cases')}>
+              {t('nav_cases')}
+            </button>
+            <button className="nav-link text-lg" onClick={() => handleNavClick('contact')}>
+              {t('nav_contact')}
+            </button>
+            <Link to="/blog" className="nav-link text-lg" onClick={() => setIsMobileMenuOpen(false)}>
+              {t('nav_blog')}
+            </Link>
+            
+            <CustomSelect value={i18n.language} onChange={changeLanguage} />
+
+            <a
+              href="https://wa.me/573212686430?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20de%20Husai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-button bg-cyan-400 hover:bg-cyan-500 text-white transition-colors-button"
+            >
+              {t('nav_cta')}
+              <img
+                src="/wa.png"
+                alt="WhatsApp"
+                className="w-5 h-5 ml-2"
+              />
+            </a>
           </div>
         </div>
       )}

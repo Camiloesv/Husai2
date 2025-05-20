@@ -2,6 +2,7 @@ import React from 'react';
 import { Brain, Database, LineChart, ChevronRight } from 'lucide-react';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
+import { useText } from '../../hooks/useText'; // Ajusta si la ruta es distinta
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -13,11 +14,15 @@ interface ServiceCardProps {
 const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, color }) => {
   return (
     <Card className="p-8">
-      <div className={`w-12 h-12 ${
-        color === 'purple' ? 'text-purple-primary' : 
-        color === 'info' ? 'text-status-info' : 
-        'text-status-success'
-      } mb-6`}>
+      <div
+        className={`w-12 h-12 ${
+          color === 'purple'
+            ? 'text-purple-primary'
+            : color === 'info'
+            ? 'text-status-info'
+            : 'text-status-success'
+        } mb-6`}
+      >
         {icon}
       </div>
       <h3 className="text-xl font-bold text-text-primary mb-4">{title}</h3>
@@ -31,33 +36,37 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, col
 };
 
 const Services: React.FC = () => {
-  const services = [
+  const { services } = useText();
+
+  const serviceData = [
     {
       icon: <Brain className="w-full h-full" />,
-      title: "AI Solutions",
-      description: "Custom AI models tailored to your specific business needs and challenges.",
-      color: "purple" as const
+      title: services.ai,
+      description: services.aiDesc,
+      color: 'purple' as const,
     },
     {
       icon: <Database className="w-full h-full" />,
-      title: "Data Processing",
-      description: "Advanced data processing and analytics to uncover valuable insights.",
-      color: "info" as const
+      title: services.data,
+      description: services.dataDesc,
+      color: 'info' as const,
     },
     {
       icon: <LineChart className="w-full h-full" />,
-      title: "Predictive Analytics",
-      description: "Future-proof your decisions with our predictive analytics solutions.",
-      color: "success" as const
-    }
+      title: services.predictive,
+      description: services.predictiveDesc,
+      color: 'success' as const,
+    },
   ];
 
   return (
     <section id="services" className="mb-32">
-      <h2 className="text-3xl font-bold text-text-primary text-center mb-16">Our Solutions</h2>
+      <h2 className="text-3xl font-bold text-text-primary text-center mb-16">
+        {services.title}
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {services.map((service, index) => (
-          <ServiceCard 
+        {serviceData.map((service, index) => (
+          <ServiceCard
             key={index}
             icon={service.icon}
             title={service.title}

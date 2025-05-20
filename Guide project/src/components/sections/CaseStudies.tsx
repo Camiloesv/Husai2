@@ -2,6 +2,7 @@ import React from 'react';
 import { Award, ChevronRight } from 'lucide-react';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
+import { useText } from '../../hooks/useText'; // Ajusta la ruta si es necesario
 
 interface CaseStudyProps {
   icon: React.ReactNode;
@@ -35,26 +36,30 @@ const CaseStudy: React.FC<CaseStudyProps> = ({ icon, title, description, categor
 };
 
 const CaseStudies: React.FC = () => {
+  const { cases } = useText();
+
   const caseStudies = [
     {
       icon: <Award className="w-full h-full" />,
-      title: "Global Tech Leader",
-      description: "Implemented AI-driven customer service automation, reducing response time by 75%",
-      category: "Tech & Innovation",
-      color: "purple" as const
+      title: cases.case1Title,
+      description: cases.case1Desc,
+      category: 'Tech & Innovation', // puedes internacionalizarlo también si lo deseas
+      color: 'purple' as const
     },
     {
       icon: <Award className="w-full h-full" />,
-      title: "Healthcare Pioneer",
-      description: "Advanced data analytics platform for predictive patient care outcomes",
-      category: "Healthcare",
-      color: "info" as const
+      title: cases.case2Title,
+      description: cases.case2Desc,
+      category: 'Healthcare', // también puedes traducirlo si se usa en otros idiomas
+      color: 'info' as const
     }
   ];
 
   return (
     <section id="cases" className="mb-32">
-      <h2 className="text-3xl font-bold text-text-primary text-center mb-16">Success Stories</h2>
+      <h2 className="text-3xl font-bold text-text-primary text-center mb-16">
+        {cases.title}
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {caseStudies.map((study, index) => (
           <CaseStudy 

@@ -50,7 +50,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       
       {/* Category Badge */}
       <div className="absolute top-4 right-4 z-10">
-        <span className="px-4 py-1 rounded-full bg-purple-primary/20 text-purple-primary text-sm backdrop-blur-sm">
+        <span className="px-4 py-1 rounded-full backdrop-blur-sm bg-dark-card/70 text-text-primary text-sm border border-purple-primary/40">
           {category}
         </span>
       </div>

@@ -28,6 +28,12 @@
     "blog_subtitle": "Explorez notre collection d'articles sur l'intelligence artificielle, la science des données et l'innovation technologique.",
     "back_to_articles": "Retour aux articles",
     "article_not_found": "Article non trouvé.",
-    "article_error": "Erreur lors du chargement de l'article."
+    "article_error": "Erreur lors du chargement de l'article.",
+
+    "nav_services": "Services",
+    "nav_cases": "Études de cas",
+    "nav_contact": "Contact",
+    "nav_blog": "Blog",
+    "nav_cta": "Commencer"
   }
   

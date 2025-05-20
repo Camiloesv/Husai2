@@ -1,69 +1,89 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import { AuthProvider } from './components/AuthContext';
+import LoadingScreen from './components/LoadingScreen';
+import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import Hero from './components/sections/Hero';
-import Services from './components/sections/Services';
-import CaseStudies from './components/sections/CaseStudies';
-import Contact from './components/sections/Contact';
-import BackgroundElements from './components/BackgroundElements';
-import LoadingScreen from './components/LoadingScreen';
 import VoiceflowChat from './components/VoiceflowChat';
-import Blog from './pages/Blog';
-import ArticlePage from './pages/ArticlePage';
 import ParallaxBackground from './components/ParallaxBackground';
 import CircularPath from './components/animations/CircularPath';
+import BackgroundElements from './components/BackgroundElements';
 
-const LandingPage: React.FC = () => (
-  <>
-    <Hero />
-    <Services />
-    <CaseStudies />
-    <Contact />
-  </>
-);
+/* -------------------------------------------------------------------------- */
+/*                        Lazy‑loaded page modules                            */
+/* -------------------------------------------------------------------------- */
+const LandingPage   = lazy(() => import('./pages/LandingPage'));
+const Blog          = lazy(() => import('./pages/Blog'));
+const ArticlePage   = lazy(() => import('./pages/ArticlePage'));
+const AuthPage      = lazy(() => import('./pages/Auth'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const VerifyEmailPage = lazy(() => import('./pages/VerifyEmailPage'));
 
-function App() {
-  const location = useLocation(); // 1. detecta cambios de ruta
-  const [isLoading, setIsLoading] = useState(true);
+const Loading = () => <div>Loading...</div>;
 
-  // 2. Mostrar pantalla de carga al inicio
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // 3. Mostrar pantalla de carga cada vez que cambia la ruta
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 1000); // duración deseada al cambiar página
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
-
+/* -------------------------------------------------------------------------- */
+/*                               Layouts                                      */
+/* -------------------------------------------------------------------------- */
+/**
+ * PublicLayout wraps pages that are visible to everyone (landing, blog, etc.).
+ */
+function PublicLayout() {
   return (
-    <>
-      {isLoading ? (
-        <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
-      ) : (
-        <div className="min-h-screen relative overflow-hidden flex flex-col bg-dark-background/80">
-          <ParallaxBackground />
-          <CircularPath />
-          <BackgroundElements />
+    <div className="min-h-screen relative overflow-hidden flex flex-col bg-dark-background/80">
+      {/* Static decorative layers */}
+      <ParallaxBackground />
+      <CircularPath />
+      <BackgroundElements />
 
-          <Navbar />
-          <main className="flex-grow relative container mx-auto px-6 py-8">
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<ArticlePage />} />
-            </Routes>
-          </main>
-          <Footer />
-          <VoiceflowChat />
-        </div>
-      )}
-    </>
+      {/* Chrome */}
+      <Navbar />
+      <main className="flex-grow relative container mx-auto px-6 py-8">
+        <Outlet />
+      </main>
+      <Footer />
+      <VoiceflowChat />
+    </div>
   );
 }
 
-export default App;
+/**
+ * AuthLayout keeps the navbar minimal (or none) – replace as desired.
+ */
+function AuthLayout() {
+  return (
+    <div className="min-h-screen flex bg-dark-background">
+      <Outlet />
+    </div>
+  );
+}
+
+/* ───────────── App Router ───────────── */
+export default function App() {
+  return (
+    /* 2.  Envuelve TODO con AuthProvider */
+    <AuthProvider>
+      <Suspense fallback={<LoadingScreen onLoadingComplete={() => console.log('Loading complete')} />}>
+        <Routes>
+          {/* Public routes */}
+          <Route element={<PublicLayout />}>
+            <Route index element={<Suspense fallback={<Loading />}> <LandingPage /> </Suspense>} />
+            <Route path="blog" element={<Suspense fallback={<Loading />}> <Blog /> </Suspense>} />
+            <Route path="blog/:slug" element={<Suspense fallback={<Loading />}> <ArticlePage /> </Suspense>} />
+          </Route>
+
+          {/* Auth */}
+          <Route element={<AuthLayout />}>
+            <Route path="auth" element={<Suspense fallback={<Loading />}> <AuthPage /> </Suspense>} />
+            <Route path="verify-email" element={<Suspense fallback={<Loading />}> <VerifyEmailPage /> </Suspense>} />
+          </Route>
+
+          {/* Protected routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="dashboard" element={<Suspense fallback={<Loading />}> <DashboardPage /> </Suspense>} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </AuthProvider>
+  );
+}
