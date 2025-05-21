@@ -4,6 +4,7 @@ import { supabase, ArticleFromSupabase } from '../lib/supabaseClient';
 import { marked } from 'marked';
 import { ArrowLeft, Calendar, Clock, Tag, Share2 } from 'lucide-react';
 import Card from '../components/ui/Card';
+import { Helmet } from 'react-helmet-async';
 
 interface ArticleDisplayData {
   title: string;
@@ -105,6 +106,26 @@ const ArticlePage: React.FC = () => {
 
   return (
     <div className={`max-w-4xl mx-auto transition-all duration-1000 px-4 py-12 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <Helmet>
+        <title>{article.title} | {article.category || 'Blog'} | Husai</title>
+        <meta name="description" content={`${article.content.substring(0, 155)}... Tags: ${article.tags?.join(', ')}`} />
+        <meta name="keywords" content={`${article.tags?.join(', ')}, ${article.category}, inteligencia artificial`} />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={`${article.content.substring(0, 155)}... Tags: ${article.tags?.join(', ')}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`[current_page_url]`} /> {/* Replace with actual URL */}
+        <meta property="og:image" content={article.imageUrl} />
+        <meta property="article:published_time" content={article.date} /> {/* Assuming date is sufficient */}
+        <meta property="article:author" content="Husai Team" />
+        <meta property="article:section" content={article.category} />
+        {article.tags?.map((tag, index) => (
+          <meta property="article:tag" content={tag} key={index} />
+        ))}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.title} />
+        <meta name="twitter:description" content={`${article.content.substring(0, 155)}... Tags: ${article.tags?.join(', ')}`} />
+        <meta name="twitter:image" content={article.imageUrl} />
+      </Helmet>
       <button
         onClick={() => navigate('/blog')}
         className="flex items-center gap-2 text-text-tertiary hover:text-purple-primary transition-colors mb-8 group"

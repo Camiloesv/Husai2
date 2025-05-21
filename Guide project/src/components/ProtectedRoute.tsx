@@ -15,10 +15,10 @@ export default function ProtectedRoute() {
   const { user, loading } = useAuth();
   const location = useLocation();
 
-  if (loading) return <LoadingScreen />; // waiting for AuthProvider
+  if (loading) return <LoadingScreen onLoadingComplete={() => {}} />; // waiting for AuthProvider
 
   if (!user) {
-    // Not logged in → bounce to /auth and remember intended URL
+    // Not logged in -> bounce to /auth and remember intended URL
     return <Navigate to="/auth" replace state={{ from: location }} />;
   }
 

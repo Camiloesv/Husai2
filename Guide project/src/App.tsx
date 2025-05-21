@@ -1,7 +1,6 @@
-import React, { Suspense, lazy } from 'react';
-import { Routes, Route, Outlet } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { AuthProvider } from './components/AuthContext';
-import LoadingScreen from './components/LoadingScreen';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -9,34 +8,27 @@ import VoiceflowChat from './components/VoiceflowChat';
 import ParallaxBackground from './components/ParallaxBackground';
 import CircularPath from './components/animations/CircularPath';
 import BackgroundElements from './components/BackgroundElements';
+import LoadingScreen from './components/LoadingScreen';
+import { AnimatePresence, motion } from 'framer-motion';
 
 /* -------------------------------------------------------------------------- */
-/*                        Lazy‑loaded page modules                            */
+/*                        Lazy-loaded page modules                            */
 /* -------------------------------------------------------------------------- */
 const LandingPage   = lazy(() => import('./pages/LandingPage'));
 const Blog          = lazy(() => import('./pages/Blog'));
 const ArticlePage   = lazy(() => import('./pages/ArticlePage'));
 const AuthPage      = lazy(() => import('./pages/Auth'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
-const VerifyEmailPage = lazy(() => import('./pages/VerifyEmailPage'));
-
-const Loading = () => <div>Loading...</div>;
 
 /* -------------------------------------------------------------------------- */
 /*                               Layouts                                      */
 /* -------------------------------------------------------------------------- */
-/**
- * PublicLayout wraps pages that are visible to everyone (landing, blog, etc.).
- */
 function PublicLayout() {
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col bg-dark-background/80">
-      {/* Static decorative layers */}
       <ParallaxBackground />
       <CircularPath />
       <BackgroundElements />
-
-      {/* Chrome */}
       <Navbar />
       <main className="flex-grow relative container mx-auto px-6 py-8">
         <Outlet />
@@ -47,43 +39,78 @@ function PublicLayout() {
   );
 }
 
-/**
- * AuthLayout keeps the navbar minimal (or none) – replace as desired.
- */
 function AuthLayout() {
   return (
-    <div className="min-h-screen flex bg-dark-background">
+    <div className="min-h-screen flex items-center justify-center bg-dark-background">
       <Outlet />
     </div>
   );
 }
 
-/* ───────────── App Router ───────────── */
+/* -------------------------------------------------------------------------- */
+/*                               App Router                                   */
+/* -------------------------------------------------------------------------- */
 export default function App() {
+  const { pathname } = useLocation();
+  const [loading, setLoading] = useState(true);       // TRUE initially to delay first mount
+  const [showRoutes, setShowRoutes] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setShowRoutes(false);
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+
+      // Delay route rendering a bit more after loader fades out
+      setTimeout(() => {
+        setShowRoutes(true);
+      }, 300); // small delay to avoid flicker
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
   return (
-    /* 2.  Envuelve TODO con AuthProvider */
     <AuthProvider>
-      <Suspense fallback={<LoadingScreen onLoadingComplete={() => console.log('Loading complete')} />}>
-        <Routes>
-          {/* Public routes */}
-          <Route element={<PublicLayout />}>
-            <Route index element={<Suspense fallback={<Loading />}> <LandingPage /> </Suspense>} />
-            <Route path="blog" element={<Suspense fallback={<Loading />}> <Blog /> </Suspense>} />
-            <Route path="blog/:slug" element={<Suspense fallback={<Loading />}> <ArticlePage /> </Suspense>} />
-          </Route>
+      {/* Loading animation */}
+      <AnimatePresence mode="wait">
+        {loading && (
+          <motion.div
+            key="loader"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="fixed inset-0 z-[9999]"
+          >
+            <LoadingScreen />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          {/* Auth */}
-          <Route element={<AuthLayout />}>
-            <Route path="auth" element={<Suspense fallback={<Loading />}> <AuthPage /> </Suspense>} />
-            <Route path="verify-email" element={<Suspense fallback={<Loading />}> <VerifyEmailPage /> </Suspense>} />
-          </Route>
+      {/* Routes rendered only after loading + fade out */}
+      {showRoutes && (
+        <Suspense fallback={null}>
+          <Routes>
+            <Route element={<PublicLayout />}>
+              <Route index element={<LandingPage />} />
+              <Route path="blog" element={<Blog />} />
+              <Route path="blog/:slug" element={<ArticlePage />} />
+            </Route>
 
-          {/* Protected routes */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="dashboard" element={<Suspense fallback={<Loading />}> <DashboardPage /> </Suspense>} />
-          </Route>
-        </Routes>
-      </Suspense>
+            <Route element={<AuthLayout />}>
+              <Route path="auth" element={<AuthPage />} />
+            </Route>
+
+            <Route element={<ProtectedRoute />}>
+              <Route element={<PublicLayout />}>
+                <Route path="dashboard" element={<DashboardPage />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Suspense>
+      )}
     </AuthProvider>
   );
 }

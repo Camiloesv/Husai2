@@ -70,9 +70,9 @@ const Navbar: React.FC = () => {
             <button className="nav-link" onClick={() => handleNavClick('contact')}>
               {t('nav_contact')}
             </button>
-            <Link to="/blog" className="nav-link">{t('nav_blog')}</Link>
+            <button onClick={() => navigate('/blog')} className="nav-link">{t('nav_blog')}</button>
           </div>
-          <div className="ml-2 w-16"> 
+          <div className="ml-2 w-16">
             <CustomSelect value={i18n.language} onChange={changeLanguage} />
           </div>
           <a
