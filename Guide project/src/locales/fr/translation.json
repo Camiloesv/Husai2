@@ -6,13 +6,13 @@
     "hero_button_secondary": "Voir notre blog",
     "hero_ai_partners": "Nous collaborons avec les entreprises d'IA les plus innovantes au monde",
   
-    "services_title": "Nos solutions",
-    "service_ai": "Solutions d'IA",
-    "service_ai_desc": "Modèles d'IA personnalisés pour les besoins et défis de votre entreprise.",
-    "service_data": "Traitement de données",
-    "service_data_desc": "Analyse avancée des données pour découvrir des informations précieuses.",
-    "service_predictive": "Analyse prédictive",
-    "service_predictive_desc": "Prenez des décisions éclairées avec notre analyse prédictive.",
+    "services_title": "Nos services",
+    "service_dx_ai360": "Dx‑IA 360°",
+    "service_dx_ai360_desc": "Diagnostic de maturité numérique et IA en cinq axes en 3 semaines.",
+    "service_copilot": "Co‑Pilot AI",
+    "service_copilot_desc": "Consultation stratégique, gouvernance et formation 70‑20‑10.",
+    "service_sprint_ia90": "Sprint‑IA 90",
+    "service_sprint_ia90_desc": "1‑3 pilotes prêts pour la production en 90 jours avec RPA, IA générative et analytique prédictive.",
   
     "cases_title": "Histoires de réussite",
     "case_1_title": "Leader technologique mondial",
@@ -34,6 +34,8 @@
     "nav_cases": "Études de cas",
     "nav_contact": "Contact",
     "nav_blog": "Blog",
-    "nav_cta": "Commencer"
+    "nav_cta": "Commencer",
+    "learn_more": "En savoir plus",
+    "back_home": "Retour à l'accueil"
   }
   

@@ -19,6 +19,7 @@ const ArticlePage   = lazy(() => import('./pages/ArticlePage'));
 const AuthPage      = lazy(() => import('./pages/Auth'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const VerifyEmailPage = lazy(() => import('./pages/VerifyEmailPage'));
+const ServicePage   = lazy(() => import('./pages/ServicePage'));
 
 const Loading = () => <div>Loading...</div>;
 
@@ -70,6 +71,7 @@ export default function App() {
             <Route index element={<Suspense fallback={<Loading />}> <LandingPage /> </Suspense>} />
             <Route path="blog" element={<Suspense fallback={<Loading />}> <Blog /> </Suspense>} />
             <Route path="blog/:slug" element={<Suspense fallback={<Loading />}> <ArticlePage /> </Suspense>} />
+            <Route path="services/:serviceId" element={<Suspense fallback={<Loading />}> <ServicePage /> </Suspense>} />
           </Route>
 
           {/* Auth */}
