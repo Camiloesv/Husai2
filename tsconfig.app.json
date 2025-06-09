@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    /* ---------- ⭐️ Opciones que ya venían ⭐️ ---------- */
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* JSX / React */
+    "jsx": "react-jsx",
+
+    /* ---------- 🆕 Alias absolute imports ---------- */
+    "baseUrl": ".",                    // raíz del repo
+    "paths": {
+      "@/*": ["src/*"]                 // @/…  →  ./src/…
+    },
+
+    /* Linting / Strictness */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
