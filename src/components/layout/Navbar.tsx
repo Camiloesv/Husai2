@@ -71,6 +71,7 @@ const Navbar: React.FC = () => {
               {t('nav_contact')}
             </button>
             <button onClick={() => navigate('/blog')} className="nav-link">{t('nav_blog')}</button>
+            <button onClick={() => navigate('/auth')} className="nav-link">{t('nav_login')}</button>
           </div>
           <div className="ml-2 w-16">
             <CustomSelect value={i18n.language} onChange={changeLanguage} />
@@ -114,6 +115,9 @@ const Navbar: React.FC = () => {
             </button>
             <Link to="/blog" className="nav-link text-lg" onClick={() => setIsMobileMenuOpen(false)}>
               {t('nav_blog')}
+            </Link>
+            <Link to="/auth" className="nav-link text-lg" onClick={() => setIsMobileMenuOpen(false)}>
+              {t('nav_login')}
             </Link>
             
             <CustomSelect value={i18n.language} onChange={changeLanguage} />
