@@ -14,12 +14,12 @@ export const useText = () => {
     },
     services: {
       title: t('services_title'),
-      ai: t('service_ai'),
-      aiDesc: t('service_ai_desc'),
-      data: t('service_data'),
-      dataDesc: t('service_data_desc'),
-      predictive: t('service_predictive'),
-      predictiveDesc: t('service_predictive_desc'),
+      dxia: t('service_dx_ai360'),
+      dxiaDesc: t('service_dx_ai360_desc'),
+      copilot: t('service_copilot'),
+      copilotDesc: t('service_copilot_desc'),
+      sprint: t('service_sprint_ia90'),
+      sprintDesc: t('service_sprint_ia90_desc'),
     },
     cases: {
       title: t('cases_title'),
@@ -41,6 +41,13 @@ export const useText = () => {
       back: t('back_to_articles'),
       notFound: t('article_not_found'),
       error: t('article_error'),
+    },
+    servicePage: {
+      notFound: t('service_not_found'),
+    },
+    common: {
+      learnMore: t('learn_more'),
+      backHome: t('back_home'),
     },
   };
 };
