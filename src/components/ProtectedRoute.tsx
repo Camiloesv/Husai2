@@ -8,7 +8,7 @@ import LoadingScreen from '../components/LoadingScreen';
  *
  * Usage in <Routes>:
  *   <Route element={<ProtectedRoute />}>
- *     <Route path="/dashboard" element={<DashboardPage />} />
+ *     <Route path="/businessassistant" element={<BusinessAssistant />} />
  *   </Route>
  */
 export default function ProtectedRoute() {
