@@ -39,7 +39,7 @@
 
     /* ------------------------------ routing --------------------------------- */
     const navigate = useNavigate();
-    const from = (useLocation().state as any)?.from?.pathname || '/dashboard';
+    const from = (useLocation().state as any)?.from?.pathname || '/businessassistant';
 
     /* ----------------------------- handlers --------------------------------- */
     const onSubmit = async ({ email, password }: Inputs) => {
@@ -66,7 +66,7 @@
           {/* --------------------------------- Header ------------------------- */}
           <header className="text-center mb-8">
             <h2 className="text-2xl font-bold text-text-primary mb-2">Welcome Back</h2>
-            <p className="text-text-secondary">Sign in to access your dashboard</p>
+            <p className="text-text-secondary">Sign in to access your business assistant</p>
           </header>
 
           {/* --------------------------------- Form --------------------------- */}

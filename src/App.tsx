@@ -9,7 +9,7 @@ import ParallaxBackground from './components/ParallaxBackground';
 import CircularPath from './components/animations/CircularPath';
 import BackgroundElements from './components/BackgroundElements';
 import LoadingScreen from './components/LoadingScreen';
-import BusinessAssistant from './pages/BusinessAssistant;';
+import BusinessAssistant from './pages/BusinessAssistant';
 import { AnimatePresence, motion } from 'framer-motion';
 
 /* -------------------------------------------------------------------------- */
@@ -106,7 +106,7 @@ export default function App() {
 
             <Route element={<ProtectedRoute />}>
               <Route element={<PublicLayout />}>
-                <Route path="dashboard" element={<BusinessAssistant />} />
+                <Route path="businessassistant" element={<BusinessAssistant />} />
               </Route>
             </Route>
           </Routes>

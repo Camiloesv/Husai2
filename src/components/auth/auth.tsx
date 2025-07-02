@@ -81,7 +81,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSubmit }) => {
           <p className="text-text-secondary">
             {isSignUp 
               ? 'Join us to unlock the full potential of AI'
-              : 'Sign in to access your dashboard'}
+              : 'Sign in to access your business assistant'}
           </p>
         </div>
 
