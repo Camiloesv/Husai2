@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, FormEvent } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 type Role = 'user' | 'assistant';
 type ChatMode = 'n8n' | 'vapi';
@@ -161,6 +162,10 @@ const BusinessAssistant: React.FC = () => {
   // --- Render
   return (
     <div className="w-full max-w-3xl mx-auto py-8">
+      <Helmet>
+        <title>Business Assistant | HusAI</title>
+        <meta name="description" content="Create and interact with the HusAI business assistant for AI-driven guidance." />
+      </Helmet>
       {!chatVisible ? (
         <form onSubmit={handleBusiness} className="glass-card p-8 relative overflow-hidden">
           <h2 className="text-2xl font-semibold mb-2">Crea tu asistente virtual personalizado</h2>

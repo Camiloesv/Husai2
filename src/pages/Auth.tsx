@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -60,6 +61,10 @@ export default function QuickAuthForm() {
   /* ------------------------------------------------------------------------ */
   return (
     <div className="w-full max-w-md mx-auto">
+      <Helmet>
+        <title>Sign In | HusAI</title>
+        <meta name="description" content="Access your HusAI business assistant account or create a new one." />
+      </Helmet>
       <div className="glass-card p-8 backdrop-blur-xl border border-dark-border/10 shadow-xl shadow-purple-primary/5">
         {/* --------------------------------- Header ------------------------- */}
         <header className="text-center mb-8">
