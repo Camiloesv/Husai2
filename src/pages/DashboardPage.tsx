@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useCardHover } from '../hooks/useCardHover';
 import Logo from '../components/Logo';
 import DashboardLayout from '../components/layout/DashboardLayout';
+import { Helmet } from 'react-helmet-async';
 
 const cards = [
   { title: 'Projects', desc: 'Manage your AI projects in one place.' },
@@ -12,6 +13,10 @@ const cards = [
 export default function DashboardPage() {
   return (
     <DashboardLayout>
+      <Helmet>
+        <title>Dashboard | HusAI</title>
+        <meta name="description" content="Manage your projects and settings within the HusAI dashboard." />
+      </Helmet>
       <header className="text-center mb-12 z-10">
         <h1 className="text-4xl md:text-5xl font-bold animate-glow">Welcome to your Dashboard</h1>
         <p className="text-text-secondary mt-2">Choose an action to get started</p>
