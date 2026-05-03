@@ -10,8 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.4",
+    "@headlessui/react": "^2.2.10",
     "@hookform/resolvers": "^5.0.1",
+    "@react-aria/utils": "^3.29.0",
     "@splinetool/react-spline": "2.2.1",
     "@splinetool/runtime": "0.9.506",
     "@supabase/supabase-js": "^2.49.4",
