@@ -17,8 +17,8 @@ declare module '@splinetool/react-spline' {
 
 declare module '@splinetool/runtime' {
   export interface Spline {
-    findObjectByName: (name: string) => any;
-    findObjectById: (id: string) => any;
-    findObjectsByType: (type: string) => any[];
+    findObjectByName: (name: string) => unknown;
+    findObjectById: (id: string) => unknown;
+    findObjectsByType: (type: string) => unknown[];
   }
 }

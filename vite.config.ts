@@ -9,7 +9,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'), // 👈 alias absoluto
     },
   },
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
+
 });

@@ -16,7 +16,7 @@ const config = {
   assistantId: 'assistant_1234567890abcdef',
 };
 
-function useAutoScroll(dep: any) {
+function useAutoScroll(dep: unknown) {
   const endRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -36,20 +36,21 @@ const BusinessAssistant: React.FC = () => {
 
   const businessRef = useRef<HTMLTextAreaElement>(null);
   const userInputRef = useRef<HTMLInputElement>(null);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const conversationEndRef = useAutoScroll(conversation);
 
   // --- Audio recognition effect
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) return;
       const recognition = new SpeechRecognition();
       recognition.lang = 'es-CO';
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
       recognitionRef.current = recognition;
 
-      recognition.onresult = (e: any) => {
+      recognition.onresult = (e: SpeechRecognitionResultEvent) => {
         const transcript = e.results[0][0].transcript;
         addMsg('user', transcript);
         handleAudio(transcript);
@@ -78,7 +79,7 @@ const BusinessAssistant: React.FC = () => {
   async function handleBusiness(e: FormEvent) {
     e.preventDefault();
     const desc = businessRef.current?.value.trim() || '';
-    if (!desc) return notify('Por favor ingresa una descripción de tu empresa', 'error');
+    if (!desc) return notify('Por favor ingresa una descripción de tu empresa');
     setBusiness(desc);
     setLoading(true);
     setTimeout(() => {
@@ -137,15 +138,15 @@ const BusinessAssistant: React.FC = () => {
   }
 
   function toggleRecording() {
-    if (!recognitionRef.current) return notify('Reconocimiento de voz no soportado.', 'error');
+    if (!recognitionRef.current) return notify('Reconocimiento de voz no soportado.');
     if (isRecording) recognitionRef.current.stop();
     else try {
       recognitionRef.current.start();
       setIsRecording(true);
-    } catch { notify('No se pudo iniciar el micrófono.', 'error'); }
+    } catch { notify('No se pudo iniciar el micrófono.'); }
   }
 
-  function notify(msg: string, type: 'info' | 'error') {
+  function notify(msg: string) {
     // Simple notification. Use your preferred solution in prod
     alert(msg);
   }
@@ -156,7 +157,7 @@ const BusinessAssistant: React.FC = () => {
     setConversation([]);
     setChatVisible(false);
     setLoading(false);
-    businessRef.current && (businessRef.current.value = '');
+    if (businessRef.current) businessRef.current.value = ''; 
   }
 
   // --- Render

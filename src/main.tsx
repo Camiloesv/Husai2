@@ -16,3 +16,7 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>
 );
 
+
+import './styles/shell.css';
+
+import './styles/motion-revision.css';

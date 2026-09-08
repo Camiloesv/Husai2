@@ -17,7 +17,9 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en', // idioma por defecto si no encuentra el idioma del usuario
+    supportedLngs: ['es', 'en', 'fr'],
+    load: 'languageOnly',
+    fallbackLng: 'es', // idioma por defecto si no encuentra el idioma del usuario
     interpolation: {
       escapeValue: false, // React ya maneja esto
     },

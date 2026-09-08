@@ -4,14 +4,14 @@
 
 @layer base {
   html {
-    font-family: 'Poppins', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     background-color: theme('colors.dark.background');
     color: theme('colors.text.primary');
     scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Chivo', sans-serif;
   }
 
   body {
@@ -102,6 +102,44 @@
 
 .glass-button {
   @apply glass rounded-full px-6 py-3 text-text-primary bg-purple-primary hover:bg-purple-hover active:bg-purple-active transition-all duration-200 ease-in-out flex items-center gap-2;
+}
+
+/* Brand utilities */
+.text-gradient-purple {
+  background: linear-gradient(135deg, #AB47BC 0%, #9C27B0 50%, #4A148C 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+.bg-radial-purple {
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 20%, rgba(156, 39, 176, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(74, 20, 140, 0.22), transparent 65%);
+}
+
+.gradient-border-purple {
+  position: relative;
+  background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+              linear-gradient(135deg, #9C27B0, #4A148C, #AB47BC, #9C27B0) border-box;
+  background-size: 100% 100%, 300% 300%;
+  border: 1.5px solid transparent;
+  animation: gradientSpin 6s ease infinite;
+}
+
+.shimmer-bg {
+  background-image: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  background-size: 200% 100%;
 }
 
 .floating-nav {

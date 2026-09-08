@@ -3,26 +3,31 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
+        display: ['Chivo', 'sans-serif'],
+        body: ['Manrope', 'sans-serif'],
+      },
       colors: {
         dark: {
-          background: '#121212',
-          surface: '#1E1E1E',
-          card: '#2D2D2D',
-          modal: '#333333',
-          border: '#424242',
-          divider: '#333333',
+          background: '#08070D',
+          surface: '#190D2B',
+          card: '#21172D',
+          modal: '#2D203D',
+          border: '#4D3C62',
+          divider: '#2D203D',
         },
         text: {
-          primary: '#FFFFFF',
+          primary: '#F5F2FA',
           secondary: '#E0E0E0',
           tertiary: '#BDBDBD',
           disabled: '#757575',
         },
         purple: {
-          primary: '#9C27B0',
-          hover: '#AB47BC',
-          active: '#7B1FA2',
-          secondary: '#4A148C',
+          primary: '#8B5CF6',
+          hover: '#C4B5FD',
+          active: '#7C3AED',
+          secondary: '#190D2B',
         },
         status: {
           success: '#00C853',
@@ -30,6 +35,26 @@ export default {
           warning: '#FFB300',
           info: '#2196F3',
         },
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        gradientSpin: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+        softPulse: {
+          '0%, 100%': { opacity: '0.4' },
+          '50%': { opacity: '0.85' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 3.5s linear infinite',
+        'gradient-spin': 'gradientSpin 6s ease infinite',
+        'soft-pulse': 'softPulse 4s ease-in-out infinite',
       },
     },
   },

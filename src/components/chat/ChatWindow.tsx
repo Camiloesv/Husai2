@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Maximize2, Minimize2, MessageSquare } from 'lucide-react';
+import { X, Minimize2, MessageSquare } from 'lucide-react';
 import Draggable from 'react-draggable';
 import { Resizable } from 'react-resizable';
 
@@ -22,7 +22,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
-  const handleResize = (e: React.SyntheticEvent, { size }: { size: { width: number; height: number } }) => {
+  const handleResize = (_e: React.SyntheticEvent, { size }: { size: { width: number; height: number } }) => {
     setDimensions({
       width: Math.max(300, Math.min(400, size.width)),
       height: Math.max(400, Math.min(600, size.height)),

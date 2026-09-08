@@ -1,9 +1,9 @@
 const FormExtension = {
     name: 'Forms',
     type: 'response',
-    match: ({ trace }: any) =>
+    match: ({ trace }: { trace: { type: string; payload?: { name?: string } } }) =>
       trace.type === 'Custom_Form' || trace.payload?.name === 'Custom_Form',
-    render: ({ trace, element }: any) => {
+    render: ({ element }: { element: HTMLElement }) => {
       const formContainer = document.createElement('form');
       formContainer.style.backgroundColor = '#f9f9f9';
       formContainer.style.padding = '20px';

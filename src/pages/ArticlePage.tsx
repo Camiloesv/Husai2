@@ -70,9 +70,9 @@ const ArticlePage: React.FC = () => {
         } else if (!supabaseError) {
           setError('Article not found.');
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error(`Error fetching article with slug ${slug}:`, err);
-        setError(err.message || 'Failed to fetch article.');
+        setError((err instanceof Error ? err.message : 'Unknown error') || 'Failed to fetch article.');
       } finally {
         setIsLoading(false);
         setTimeout(() => setShowContent(true), 100);

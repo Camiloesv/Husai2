@@ -6,7 +6,7 @@ const options = [
   { id: 'fr',  flag: '/flags/fr.svg' },
 ];
 
-function CustomSelect({ value, onChange }) {
+function CustomSelect({ value, onChange }: { value: string; onChange: (value: string) => void }) {
   const selectedOption = options.find((opt) => opt.id === value) || options[0];
 
   return (

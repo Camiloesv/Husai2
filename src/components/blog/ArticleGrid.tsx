@@ -74,9 +74,9 @@ const ArticleGrid: React.FC = () => {
           }));
           setArticles(formattedArticles);
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error('Error fetching articles:', err);
-        setError(err.message || 'Failed to fetch articles.');
+        setError((err instanceof Error ? err.message : 'Unknown error') || 'Failed to fetch articles.');
       } finally {
         setIsLoading(false);
       }

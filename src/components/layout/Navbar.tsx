@@ -1,145 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Logo from '../Logo';
-import CustomSelect from '../sections/CustomSelect';
-
-const Navbar: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { getExperienceCopy } from '../../content/experience';
+import { getWhatsAppUrl } from '../../lib/whatsapp';
+import Wordmark from '../Wordmark';
+export default function Navbar() {
+  const { i18n } = useTranslation();
+  const copy = getExperienceCopy(i18n.language);
+  const [open, setOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
-
+  useEffect(() => { document.documentElement.lang = i18n.resolvedLanguage || 'es'; }, [i18n.resolvedLanguage]);
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (location.hash) {
-      const el = document.querySelector(location.hash);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    if (!location.hash) { window.scrollTo({ top: 0, behavior: 'instant' }); return; }
+    document.getElementById(location.hash.slice(1))?.scrollIntoView();
   }, [location]);
-
-  const handleNavClick = (hash: string) => {
-    setIsMobileMenuOpen(false);
-    if (location.pathname !== '/') {
-      navigate(`/#${hash}`);
-    } else {
-      const el = document.getElementById(hash);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const changeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-  };
-
-  return (
-    <nav className={`floating-nav ${isScrolled ? 'bg-dark-card/50' : 'bg-dark-card/30'}`}>
-      <div className="flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center space-x-3">
-          <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center space-x-3">
-            <Logo className="text-purple-primary w-8 h-8" />
-            <div className="flex flex-col">
-              <span className="text-text-primary text-2xl font-normal">Husai</span>
-              <span className="text-blue-primary text-xs tracking-wider font-italic">Intelligence in motion</span>
-            </div>
-          </Link>
-        </div>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-12">
-          <div className="flex space-x-8">
-            <button className="nav-link" onClick={() => handleNavClick('services')}>
-              {t('nav_services')}
-            </button>
-            <button className="nav-link" onClick={() => handleNavClick('cases')}>
-              {t('nav_cases')}
-            </button>
-            <button className="nav-link" onClick={() => handleNavClick('contact')}>
-              {t('nav_contact')}
-            </button>
-            <button onClick={() => navigate('/blog')} className="nav-link">{t('nav_blog')}</button>
-            <button onClick={() => navigate('/auth')} className="nav-link">{t('nav_login')}</button>
-          </div>
-          <div className="ml-2 w-16">
-            <CustomSelect value={i18n.language} onChange={changeLanguage} />
-          </div>
-          <a
-            href="https://wa.me/573212686430?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20de%20Husai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="glass-button bg-cyan-400 hover:bg-cyan-500 text-white transition-colors"
-          >
-            {t('nav_cta')}
-            <img
-              src="/wa.png"
-              alt="WhatsApp"
-              className="w-5 h-5 ml-2"
-            />
-          </a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-text-primary hover:text-purple-primary transition-colors"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden mt-4 py-4 border-t border-dark-border/20">
-          <div className="flex flex-col space-y-4 items-start">
-            <button className="nav-link text-lg" onClick={() => handleNavClick('services')}>
-              {t('nav_services')}
-            </button>
-            <button className="nav-link text-lg" onClick={() => handleNavClick('cases')}>
-              {t('nav_cases')}
-            </button>
-            <button className="nav-link text-lg" onClick={() => handleNavClick('contact')}>
-              {t('nav_contact')}
-            </button>
-            <Link to="/blog" className="nav-link text-lg" onClick={() => setIsMobileMenuOpen(false)}>
-              {t('nav_blog')}
-            </Link>
-            <Link to="/auth" className="nav-link text-lg" onClick={() => setIsMobileMenuOpen(false)}>
-              {t('nav_login')}
-            </Link>
-            
-            <CustomSelect value={i18n.language} onChange={changeLanguage} />
-
-            <a
-              href="https://wa.me/573212686430?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20de%20Husai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass-button bg-cyan-400 hover:bg-cyan-500 text-white transition-colors-button"
-            >
-              {t('nav_cta')}
-              <img
-                src="/wa.png"
-                alt="WhatsApp"
-                className="w-5 h-5 ml-2"
-              />
-            </a>
-          </div>
-        </div>
-      )}
-    </nav>
-  );
-};
-
-export default Navbar;
+  const ids = ['capacidades', 'metodo', 'laboratorio', 'resultados', 'planes'];
+  return <><a className="skip-link" href="#main-content">{i18n.language.startsWith('es') ? 'Saltar al contenido' : i18n.language.startsWith('fr') ? 'Aller au contenu' : 'Skip to content'}</a><header className="site-header"><nav className="site-nav" aria-label={copy.menu} onKeyDown={e => { if (e.key === 'Escape') { setOpen(false); document.getElementById('menu-toggle')?.focus(); } }}>
+    <Link className="brand-logo" to="/" onClick={() => setOpen(false)} aria-label="HusAI"><img src="/husai_logo_svg.svg" alt="" width="30" height="30" /><Wordmark /></Link>
+    <div id="site-links" className={`site-links ${open ? 'is-open' : ''}`}>{copy.nav.map((label, i) => <Link key={ids[i]} to={`/#${ids[i]}`} onClick={() => setOpen(false)}>{label}</Link>)}<Link to="/blog" onClick={() => setOpen(false)}>Blog</Link></div>
+    <div className="nav-actions"><select aria-label={copy.language} value={i18n.resolvedLanguage?.slice(0, 2) || 'es'} onChange={e => { void i18n.changeLanguage(e.target.value); }}><option value="es">ES</option><option value="en">EN</option><option value="fr">FR</option></select><a className="nav-cta contact-cta" href={getWhatsAppUrl(i18n.language)} target="_blank" rel="noopener noreferrer">{copy.cta}<ArrowUpRight size={15} /></a><button id="menu-toggle" className="mobile-toggle" aria-label={copy.menu} aria-expanded={open} aria-controls="site-links" onClick={() => setOpen(!open)}>{open ? <X size={22} /> : <Menu size={22} />}</button></div>
+  </nav></header></>;
+}

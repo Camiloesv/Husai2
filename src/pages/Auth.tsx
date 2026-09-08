@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -40,7 +40,7 @@ export default function QuickAuthForm() {
 
   /* ------------------------------ routing --------------------------------- */
   const navigate = useNavigate();
-  const from = (useLocation().state as any)?.from?.pathname || '/businessassistant';
+  const from = (useLocation().state as { from?: { pathname?: string } } | null)?.from?.pathname || '/businessassistant';
 
   /* ----------------------------- handlers --------------------------------- */
   const onSubmit = async ({ email, password }: Inputs) => {

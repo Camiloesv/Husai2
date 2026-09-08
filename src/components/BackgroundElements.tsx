@@ -74,8 +74,8 @@ const BackgroundElements: React.FC = () => {
         </div>
       </div>
 
-      {/* Overlay gradient for better text contrast */}
-      <div className="fixed inset-0 bg-gradient-to-b from-dark-background/80 via-transparent to-dark-background/80 pointer-events-none z-0" />
+      {/* Overlay gradient — softened so it doesn't wash content */}
+      <div className="fixed inset-0 bg-gradient-to-b from-dark-background/30 via-transparent to-dark-background/40 pointer-events-none -z-10" />
     </>
   );
 };

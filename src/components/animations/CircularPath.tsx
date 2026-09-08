@@ -3,10 +3,10 @@ import React, { useEffect, useRef } from 'react';
 const CircularPath: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  let baseRotation = 0;
-  let lastScrollY = window.scrollY;
 
   useEffect(() => {
+    let baseRotation = 0;
+    let lastScrollY = window.scrollY;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -87,7 +87,7 @@ const CircularPath: React.FC = () => {
         left: '50%',
         transform: 'translate(-50%, -50%)'
       }}
-      className="w-full h-full z-0 opacity-50"
+      className="w-full h-full -z-10 opacity-25 pointer-events-none"
     />
   );
 };
